@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "551822166359",
+    "project_id": "noticias-clei-2022",
+    "storage_bucket": "noticias-clei-2022.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551822166359:android:3c59957278c136f46e1612",
+        "android_client_info": {
+          "package_name": "co.edu.uniquindio.noticiasclei2022"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "551822166359-3e82gikddn2r50hve724tla60nqht3nc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.edu.uniquindio.noticiasclei2022",
+            "certificate_hash": "c53df80c33708643cc44093122c57392ad30cc57"
+          }
+        },
+        {
+          "client_id": "551822166359-pukqp2436nlcv06e1pjja35k651u5k9j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.edu.uniquindio.noticiasclei2022",
+            "certificate_hash": "debd595b582fcb906202562fa07d85efa712771d"
+          }
+        },
+        {
+          "client_id": "551822166359-4bp66pebp1f112uctdsl12f0u3c483np.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA88cvQg11YEr435m6oK68it4GFI5mJJZ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "551822166359-4bp66pebp1f112uctdsl12f0u3c483np.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
