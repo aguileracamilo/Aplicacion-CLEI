@@ -47,14 +47,14 @@ class VisualisacionPage extends StatelessWidget {
                 ),
                 Container(
                   alignment: Alignment.bottomRight,
-                  margin: const EdgeInsets.only(
+                  margin: EdgeInsets.only(
                     top: 245,
                     left: 350,
                   ),
                   //color: Colors.pink,
                   height: 20,
                   width: 80,
-                  child: const Text(
+                  child: Text(
                     '21/04/2022',
                     textAlign: TextAlign.right,
                   ),
@@ -90,8 +90,7 @@ class VisualisacionPage extends StatelessWidget {
                 ),
               )),
           crearComentario(),
-          crearComentario(),
-          //(crearComentario()
+          crearComentario()
         ],
       ),
     );

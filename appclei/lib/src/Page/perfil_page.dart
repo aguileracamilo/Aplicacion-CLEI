@@ -6,6 +6,7 @@ import 'package:appclei/src/Page/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class PerfilPage extends StatelessWidget {
   final controller = Get.put(LoginController());
   final Usuario usuario;
@@ -26,7 +27,7 @@ class PerfilPage extends StatelessWidget {
 
   AppBar appBarPerfil(bool isAdmin,BuildContext context ) {
     return AppBar(
-        title: Text(
+        title: const Text(
           'Perfil',
           style: TextStyle(
               color: ColorsCLei.azulOscuro,
@@ -41,7 +42,7 @@ class PerfilPage extends StatelessWidget {
               visible: isAdmin,
               child: IconButton(
                 iconSize: 40,
-                icon: Icon(
+                icon: const Icon(
                   Icons.add_box_rounded,
                   color: ColorsCLei.azulOscuro,
                 ),
@@ -68,7 +69,7 @@ class PerfilPage extends StatelessWidget {
         ),
         Text(
           usuario.getNombre,
-          style: TextStyle(
+          style: const TextStyle(
               color: ColorsCLei.negro, fontFamily: 'ModernSans', fontSize: 25),
         ),
         Container(
@@ -76,7 +77,7 @@ class PerfilPage extends StatelessWidget {
         ),
         Text(
           usuario.getCorreo,
-          style: TextStyle(
+          style: const TextStyle(
               color: ColorsCLei.negro, fontFamily: 'ModernSans', fontSize: 18),
         ),
         SizedBox(
