@@ -28,7 +28,7 @@ class IconsClei {
   static const IconData like = IconData(0xe8a5, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData perfil = IconData(0xe8a6, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData punto = IconData(0xe8a7, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData tres_puntos = IconData(0xe8a8, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData trespuntos = IconData(0xe8a8, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData buscar = IconData(0xe8a9, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData compartir = IconData(0xe8aa, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData dontlike = IconData(0xe8ab, fontFamily: _kFontFam, fontPackage: _kFontPkg);

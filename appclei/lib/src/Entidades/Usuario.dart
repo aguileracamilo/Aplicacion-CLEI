@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 class Usuario {
   final String nombre;
   final String correo;
@@ -6,9 +7,9 @@ class Usuario {
   Usuario(
       {required this.nombre, required this.correo, required this.rutaImagen});
 
-  get getNombre => this.nombre;
+  get getNombre => nombre;
 
-  get getCorreo => this.correo;
+  get getCorreo => correo;
 
-  get getRutaImagen => this.rutaImagen;
+  get getRutaImagen => rutaImagen;
 }

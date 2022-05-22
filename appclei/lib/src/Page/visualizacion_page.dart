@@ -12,7 +12,7 @@ class VisualisacionPage extends StatelessWidget {
 
     Map data = {};
     data = ModalRoute.of(context)?.settings.arguments as Map; 
-    final Noticia miNoticia = Noticia.i(data['titulo'],  data['descripcion'],data['imagenUrl']);
+    final Noticia miNoticia = Noticia.i(data['titulo'],  data['descripcion'],data['imagenUrl'].split('+imag')[0]);
     // TODO: implement build
     return Scaffold(
       appBar: appBarVisualizacion(context),
@@ -23,15 +23,15 @@ class VisualisacionPage extends StatelessWidget {
             //color: Colors.amber,
             child: Stack(
               children: [
-                Image(image: Image.network('${miNoticia.getImagen()}').image),
+                Image(width:600,height: 350,image: Image.network(miNoticia.getImagen()).image),
                 Container(
-                  margin: EdgeInsets.only(top: 200),
+                  margin: const EdgeInsets.only(top: 200),
                   height: 100,
                   //color: Colors.blue,
                 ),
                 Container(
                   alignment: Alignment.center,
-                  margin: EdgeInsets.only(top: 150, left: 40, right: 40),
+                  margin: const EdgeInsets.only(top: 150, left: 40, right: 40),
                   height: 120,
                   decoration: BoxDecoration(
                       color: Colors.white,
@@ -40,27 +40,27 @@ class VisualisacionPage extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(
                         vertical: 15, horizontal: 20),
                     child: Text(
-                      '${miNoticia.titulo}',
-                      style: TextStyle(fontSize: 20),
+                      miNoticia.titulo,
+                      style: const TextStyle(fontSize: 20),
                     ),
                   ),
                 ),
                 Container(
                   alignment: Alignment.bottomRight,
-                  margin: EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                     top: 245,
                     left: 350,
                   ),
                   //color: Colors.pink,
                   height: 20,
                   width: 80,
-                  child: Text(
+                  child: const Text(
                     '21/04/2022',
                     textAlign: TextAlign.right,
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 400, left: 40, right: 40),
+                  margin: const EdgeInsets.only(top: 400, left: 40, right: 40),
                   //color: Colors.red,
                   child: Text(
                       '${miNoticia.descripcion} '),
@@ -69,18 +69,18 @@ class VisualisacionPage extends StatelessWidget {
             ),
           ),
           Container(
-              margin: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+              margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
               height: 40,
               decoration: BoxDecoration(
-                borderRadius: new BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: Colors.blue),
                 color: Colors.white,
               ),
               child: TextField(
                 decoration: InputDecoration(
                   suffixIcon: Container(
-                    margin: EdgeInsets.symmetric(vertical: 4, horizontal: 4),
-                    child: Image(
+                    margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+                    child: const Image(
                       image: AssetImage('assets/lupa.png'),
                       color: Colors.blue,
                     ),
@@ -98,7 +98,7 @@ class VisualisacionPage extends StatelessWidget {
 
   AppBar appBarVisualizacion(BuildContext context) {
     return AppBar(
-        title: Text(
+        title: const Text(
           'Inicio',
           style: TextStyle(
               color: ColorsCLei.azulOscuro,
@@ -109,7 +109,7 @@ class VisualisacionPage extends StatelessWidget {
         toolbarHeight: 65,
         elevation: 0.0,
         leading: IconButton(
-            icon: Icon(
+            icon: const Icon(
               IconsClei.flecha,
               color: ColorsCLei.azulOscuro,
             ),
@@ -119,14 +119,14 @@ class VisualisacionPage extends StatelessWidget {
             }),
         actions: <Widget>[
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               IconsClei.favorito,
               color: ColorsCLei.azulOscuro,
             ),
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               IconsClei.compartir,
               color: ColorsCLei.azulOscuro,
             ),
@@ -141,24 +141,24 @@ class crearComentario extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 30),
+      margin: const EdgeInsets.symmetric(horizontal: 30),
       //color: Colors.purple,
       child: Stack(
         children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
-              borderRadius: new BorderRadius.circular(100),
+              borderRadius: BorderRadius.circular(100),
               color: Colors.white,
             ),
             width: 40,
             height: 40,
-            child: Image(
+            child: const Image(
               image: AssetImage('assets/perfil.png'),
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 60, vertical: 20),
+            margin: const EdgeInsets.symmetric(horizontal: 60, vertical: 20),
             //color: Colors.pink,
             height: 20,
             child: Text(
@@ -167,9 +167,9 @@ class crearComentario extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: 10, right: 10, top: 60, bottom: 10),
+            margin: const EdgeInsets.only(left: 10, right: 10, top: 60, bottom: 10),
             //color: Colors.pink,
-            child: Text('Muy facha la publicacion'),
+            child: const Text('Muy facha la publicacion'),
           )
         ],
       ),

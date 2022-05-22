@@ -1,32 +1,29 @@
 import 'package:appclei/presentation/colors_clei.dart';
 import 'package:appclei/presentation/icons_clei_icons.dart';
 import 'package:appclei/src/Entidades/Usuario.dart';
-import 'package:appclei/src/Page/crear_page.dart';
 import 'package:appclei/src/Page/fav_page.dart';
 import 'package:appclei/src/Page/notice_page.dart';
 import 'package:appclei/src/Page/perfil_page.dart';
-import 'package:appclei/src/Page/visualizacion_page.dart';
 import 'package:flutter/material.dart';
 
 class InicioPage extends StatefulWidget {
   Usuario usuario;
 
-  InicioPage({required this.usuario});
+  InicioPage({Key? key, required this.usuario}) : super(key: key);
   
   @override
+  // ignore: no_logic_in_create_state
   State<InicioPage> createState() => _InicioPageState(miUsuario: usuario);
 }
 
 class _InicioPageState extends State<InicioPage> {
   int _selectedIndex = 0;
-  Usuario user=new Usuario(nombre: "", correo:"", rutaImagen: "");
+  Usuario user=Usuario(nombre: "", correo:"", rutaImagen: "");
   
   Usuario miUsuario = Usuario(
       nombre: 'default', correo: 'default', rutaImagen: 'assets/default.png');
 
-  _InicioPageState({required this.miUsuario}){
-    
-  }
+  _InicioPageState({required this.miUsuario});
   
 
   TextStyle estiloTexto =
@@ -35,10 +32,10 @@ class _InicioPageState extends State<InicioPage> {
    List<Widget> _widgetOptions() =>  [
     NoticePage(),
     FavoritosPage(),
-    Text(
+    const Text(
       'Index 2: Buscar',
     ),
-    Text(
+    const Text(
       'Pagina info',
     ),
    PerfilPage(usuario: miUsuario,),
@@ -58,7 +55,7 @@ class _InicioPageState extends State<InicioPage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 30,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             backgroundColor: ColorsCLei.grisClaro,
             icon: Icon(
@@ -118,6 +115,6 @@ class _InicioPageState extends State<InicioPage> {
     });
   }
   Usuario getUsuario(){
-    return this.miUsuario;
+    return miUsuario;
   }
 }

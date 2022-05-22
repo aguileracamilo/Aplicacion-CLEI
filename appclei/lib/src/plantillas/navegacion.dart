@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:appclei/presentation/colors_clei.dart';
 import 'package:appclei/presentation/icons_clei_icons.dart';
@@ -10,17 +9,13 @@ class EstructuraNavegacion extends StatelessWidget {
   TextStyle estiloTexto=  const TextStyle(fontFamily: 'LiberationSans',fontSize: 17.0,height: 1.5 );
 
 
-  EstructuraNavegacion(){
-
-
-
-  }
+  EstructuraNavegacion({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
     
       iconSize: 30,
-      items:  [
+      items:  const [
         BottomNavigationBarItem(
           backgroundColor: ColorsCLei.grisClaro,
           icon: Icon(

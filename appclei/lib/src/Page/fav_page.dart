@@ -1,15 +1,16 @@
 import 'package:appclei/presentation/colors_clei.dart';
 import 'package:appclei/presentation/icons_clei_icons.dart';
-import 'package:appclei/src/Page/inicio_page.dart';
 import 'package:flutter/material.dart';
 
 class FavoritosPage extends StatelessWidget {
+  const FavoritosPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: appBarFavorito(),
         body: Container(
-          margin: EdgeInsets.symmetric(horizontal: 30),
+          margin: const EdgeInsets.symmetric(horizontal: 30),
           child: ListView(
             scrollDirection: Axis.vertical,
             children: [
@@ -28,7 +29,7 @@ class FavoritosPage extends StatelessWidget {
 
   AppBar appBarFavorito() {
     return AppBar(
-        title: Text(
+        title: const Text(
           'Favoritos',
           style: TextStyle(
               color: ColorsCLei.azulOscuro,
@@ -40,15 +41,15 @@ class FavoritosPage extends StatelessWidget {
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               IconsClei.buscar,
               color: ColorsCLei.azulOscuro,
             ),
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(
-              IconsClei.tres_puntos,
+            icon: const Icon(
+              IconsClei.trespuntos,
               color: ColorsCLei.azulOscuro,
             ),
             onPressed: () {},
@@ -60,6 +61,7 @@ class FavoritosPage extends StatelessWidget {
 class crearNoticia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // ignore: todo
     // TODO: implement build
     return Container(
       width: 300,
@@ -69,29 +71,29 @@ class crearNoticia extends StatelessWidget {
         children: [
           Container(
             color: Colors.red,
-            child: Image(
+            child: const Image(
               image: AssetImage('assets/fondo.png'),
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 150),
+            margin: const EdgeInsets.only(top: 150),
             color: Colors.white,
             height: 150,
           ),
           Container(
-            margin: EdgeInsets.only(top: 100, bottom: 60, left: 40, right: 40),
+            margin: const EdgeInsets.only(top: 100, bottom: 60, left: 40, right: 40),
             decoration: BoxDecoration(
                 color: Colors.white, border: Border.all(color: Colors.grey)),
             child: Container(
               margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-              child: Text(
+              child: const Text(
                 'La Conferencia Latinoamericana de Informatica (CLEI) en armenia',
                 style: TextStyle(fontSize: 19),
               ),
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 230, bottom: 20, left: 40, right: 40),
+            margin: const EdgeInsets.only(top: 230, bottom: 20, left: 40, right: 40),
             color: Colors.white,
             child: Container(
               margin: const EdgeInsets.all(5),

@@ -5,7 +5,6 @@ import 'package:http_parser/http_parser.dart';
 
 import 'package:http/http.dart' as http;
 
-import 'package:appclei/src/Entidades/Publicacion.dart';
 import 'package:appclei/src/models/publicacionModel.dart';
 
 class PublicacionProvider {
@@ -18,6 +17,7 @@ class PublicacionProvider {
         body: publicacionModelToJson(publicacion));
 
     final decodedData = json.decode(resp.body);
+
     return true;
   }
 
@@ -25,9 +25,7 @@ class PublicacionProvider {
     final url = '$_url/publicaciones.json';
     final resp = await http.get(Uri.parse(url));
 
-    final decodedData = json.decode(resp.body);
 
-    print(decodedData);
 
     return [];
   }
@@ -49,12 +47,9 @@ class PublicacionProvider {
     final resp = await http.Response.fromStream(streamResponse);
 
     if (resp.statusCode != 200 && resp.statusCode != 201) {
-      print('Algo salio mal');
-      print(resp.body);
       return null;
     }
     final respData = json.decode(resp.body);
-    print('$respData');
 
     return respData['secure_url'];
   }

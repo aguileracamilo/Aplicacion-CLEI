@@ -1,6 +1,4 @@
-import 'dart:ffi';
 
-import 'package:flutter/material.dart';
 
 class Noticia {
 
@@ -8,16 +6,9 @@ class Noticia {
   String descripcion = "";
   String imagenUrl = "https://avalos.sv/wp-content/uploads/default-featured-image.png";
 
-  Noticia ( String titulo, String descripcion){
-    this.titulo = titulo;
-    this.descripcion = descripcion;
-  }
+  Noticia ( this.titulo, this.descripcion);
 
-  Noticia.i ( String titulo, String descripcion, String imagenUrl){
-    this.titulo = titulo;
-    this.descripcion = descripcion;
-    this.imagenUrl = imagenUrl;
-  }
+  Noticia.i ( this.titulo, this.descripcion, this.imagenUrl);
 
   void setTitulo(String titulo){
     this.titulo = titulo;
