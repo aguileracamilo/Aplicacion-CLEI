@@ -6,7 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
+  
   final controller = Get.put(LoginController());
+
+  LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +152,6 @@ class LoginPage extends StatelessWidget {
             {
               throw Exception("El boton no existe");
             }
-            break;
         }
       },
       style: estiloBoton,

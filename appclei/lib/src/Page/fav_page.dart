@@ -59,6 +59,7 @@ class FavoritosPage extends StatelessWidget {
 }
 
 class crearNoticia extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     // ignore: todo

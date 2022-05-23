@@ -2,11 +2,13 @@ import 'package:appclei/presentation/colors_clei.dart';
 import 'package:appclei/presentation/icons_clei_icons.dart';
 import 'package:appclei/src/Entidades/Usuario.dart';
 import 'package:appclei/src/Page/fav_page.dart';
+import 'package:appclei/src/Page/info_page.dart';
 import 'package:appclei/src/Page/notice_page.dart';
 import 'package:appclei/src/Page/perfil_page.dart';
 import 'package:flutter/material.dart';
 
 class InicioPage extends StatefulWidget {
+
   Usuario usuario;
 
   InicioPage({Key? key, required this.usuario}) : super(key: key);
@@ -35,14 +37,11 @@ class _InicioPageState extends State<InicioPage> {
     const Text(
       'Index 2: Buscar',
     ),
-    const Text(
-      'Pagina info',
-    ),
-   PerfilPage(usuario: miUsuario,),
+    InfoPage(),
+    PerfilPage(usuario: miUsuario,),
   ];
 
   visualizar() {
-    print('a');
   }
 
   @override

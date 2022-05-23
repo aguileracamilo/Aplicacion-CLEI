@@ -5,6 +5,8 @@ import 'package:appclei/src/Page/noticia.dart';
 import 'package:flutter/material.dart';
 
 class VisualisacionPage extends StatelessWidget {
+  const VisualisacionPage({Key? key}) : super(key: key);
+
 
   
   @override
@@ -13,60 +15,60 @@ class VisualisacionPage extends StatelessWidget {
     Map data = {};
     data = ModalRoute.of(context)?.settings.arguments as Map; 
     final Noticia miNoticia = Noticia.i(data['titulo'],  data['descripcion'],data['imagenUrl'].split('+imag')[0]);
+    // ignore: todo
     // TODO: implement build
     return Scaffold(
       appBar: appBarVisualizacion(context),
       body: ListView(
         scrollDirection: Axis.vertical,
         children: [
-          Container(
-            //color: Colors.amber,
-            child: Stack(
-              children: [
-                Image(width:600,height: 350,image: Image.network(miNoticia.getImagen()).image),
-                Container(
-                  margin: const EdgeInsets.only(top: 200),
-                  height: 100,
-                  //color: Colors.blue,
-                ),
-                Container(
-                  alignment: Alignment.center,
-                  margin: const EdgeInsets.only(top: 150, left: 40, right: 40),
-                  height: 120,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(color: Colors.grey)),
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 20),
-                    child: Text(
-                      miNoticia.titulo,
-                      style: const TextStyle(fontSize: 20),
-                    ),
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.bottomRight,
-                  margin: const EdgeInsets.only(
-                    top: 245,
-                    left: 350,
-                  ),
-                  //color: Colors.pink,
-                  height: 20,
-                  width: 80,
-                  child: const Text(
-                    '21/04/2022',
-                    textAlign: TextAlign.right,
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 400, left: 40, right: 40),
+          Stack(
+            children: [
+              Image(image: Image.network(miNoticia.getImagen()).image),
+              Container(
+                margin: const EdgeInsets.only(top: 200),
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.grey)),
+                child: Container(
+                  margin: const EdgeInsets.only(top: 100, left: 40, right: 40, bottom: 100),
                   //color: Colors.red,
                   child: Text(
                       '${miNoticia.descripcion} '),
-                )
-              ],
-            ),
+                  ),
+                ),
+              Container(
+                alignment: Alignment.center,
+                margin: const EdgeInsets.only(top: 150, left: 40, right: 40),
+                height: 120,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.grey)),
+                child: Container(
+                  margin: const EdgeInsets.symmetric(
+                      vertical: 15, horizontal: 20),
+                  child: Text(
+                    miNoticia.titulo,
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                ),
+              ),
+              Container(
+                alignment: Alignment.bottomRight,
+                margin: const EdgeInsets.only(
+                  top: 245,
+                  left: 350,
+                ),
+                //color: Colors.pink,
+                height: 20,
+                width: 80,
+                child: const Text(
+                  '21/04/2022',
+                  textAlign: TextAlign.right,
+                ),
+              ),
+            ],
           ),
           Container(
               margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
@@ -114,7 +116,6 @@ class VisualisacionPage extends StatelessWidget {
               color: ColorsCLei.azulOscuro,
             ),
             onPressed: () {
-              print('press');
               Navigator.of(context).pop();
             }),
         actions: <Widget>[
@@ -137,8 +138,10 @@ class VisualisacionPage extends StatelessWidget {
 }
 
 class crearComentario extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    // ignore: todo
     // TODO: implement build
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 30),

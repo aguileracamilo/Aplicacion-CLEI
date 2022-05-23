@@ -19,7 +19,7 @@ class _CrearPageState extends State<CrearPage> {
   final formKey = GlobalKey<FormState>();
   final publicacionProvider = PublicacionProvider();
   PublicacionModel publicacion = PublicacionModel(
-      id: "", titulo: "", descripcion: "", tipo: "", fotoUrl: "");
+      id: "", titulo: "", descripcion: "", tipo: "Noticia", fotoUrl: "");
 
   final List<String> _status = ["Noticia", "Actividad"];
 

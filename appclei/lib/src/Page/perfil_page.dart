@@ -54,7 +54,7 @@ class _PerfilPageState extends State<PerfilPage> {
                   color: ColorsCLei.azulOscuro,
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, '+');
+                  Navigator.pushNamed(context, 'm');
                 },
               ))
         ]);
@@ -83,7 +83,7 @@ class _PerfilPageState extends State<PerfilPage> {
           height: 25,
         ),
         Text(
-          widget.usuario.getCorreo,
+          "Correo: "+widget.usuario.getCorreo,
           style: const TextStyle(
               color: ColorsCLei.negro, fontFamily: 'ModernSans', fontSize: 18),
         ),

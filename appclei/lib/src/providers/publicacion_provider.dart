@@ -24,8 +24,7 @@ class PublicacionProvider {
   Future<List<PublicacionModel>> cargarPublicaciones() async {
     final url = '$_url/publicaciones.json';
     final resp = await http.get(Uri.parse(url));
-
-
+    final decodedData = json.decode(resp.body);
 
     return [];
   }
@@ -69,10 +68,7 @@ class PublicacionProvider {
       prodTemp.id = id;
 
       publicaciones.add(prodTemp);
-      print(id);
     });
-
-    print(publicaciones);
 
     return publicaciones;
   }
