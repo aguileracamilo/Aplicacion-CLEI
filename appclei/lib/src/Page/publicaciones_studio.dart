@@ -1,14 +1,17 @@
 import 'package:appclei/presentation/icons_clei_icons.dart';
+import 'package:appclei/src/Entidades/Usuario.dart';
 import 'package:appclei/src/models/publicacionModel.dart';
 import 'package:appclei/src/providers/publicacion_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'noticia.dart';
 
 class StudioPage extends StatefulWidget {
+ 
+  Usuario usuario=Usuario(nombre: "", correo: "", rutaImagen: "");
 
-  const StudioPage({Key? key}) : super(key: key);
-
+ StudioPage({required this.usuario});
   @override
   State<StudioPage> createState() => _StudioPageState();
 }
@@ -16,9 +19,10 @@ class StudioPage extends StatefulWidget {
 class _StudioPageState extends State<StudioPage> {
   Noticia miNoticia = Noticia.i("", "",
       "https://avalos.sv/wp-content/uploads/default-featured-image.png");
+   
 
   final publicacionProvider = PublicacionProvider();
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,13 +76,14 @@ class _StudioPageState extends State<StudioPage> {
                     publicacion[num].descripcion,
                     publicacion[num].fotoUrl.split("+imag+")[0]);
                 return Container(
-                  child: crearNoticia2(miNoti, true, publicacion[num].fotoUrl),
+                  child: CrearNoticia2(miNoti, true, publicacion[num].fotoUrl,
+                      publicacion[num].id,widget.usuario,publicacion[num].id),
                   height: 300,
-                   margin: const EdgeInsets.only(
-                   bottom:10,left:20,right: 20 ),
+                  margin:
+                      const EdgeInsets.only(bottom: 10, left: 20, right: 20),
                 );
               },
-            ); 
+            );
           } else {
             return const Center(child: CircularProgressIndicator());
           }
@@ -86,19 +91,33 @@ class _StudioPageState extends State<StudioPage> {
   }
 }
 
-class crearNoticia2 extends StatelessWidget {
+// ignore: camel_case_types
+class CrearNoticia2 extends StatefulWidget {
   Noticia miNoticia = Noticia.i("", "", "");
+  String id = "";
   bool tipo = false;
-
-  crearNoticia2(this.miNoticia, bool t, fotos, {Key? key}) : super(key: key) {
+String idNoticia="";
+  Usuario user=new Usuario(nombre: "", correo: "", rutaImagen: "");
+  CrearNoticia2(this.miNoticia, bool t, fotos, String miId,Usuario user,String id , {Key? key})
+      : super(key: key) {
     tipo = t;
+    id = miId;
+    this.idNoticia=id;
+    this.user=user;
   }
+
+  @override
+  State<CrearNoticia2> createState() => _CrearNoticia2State();
+}
+
+class _CrearNoticia2State extends State<CrearNoticia2> {
+  final publicacionProvider = PublicacionProvider();
 
   @override
   Widget build(BuildContext context) {
     // ignore: todo
     // TODO: implement build
-    if (tipo) {
+    if (widget.tipo) {
       return Container(
         margin: const EdgeInsets.all(13.0),
         width: 300,
@@ -107,16 +126,19 @@ class crearNoticia2 extends StatelessWidget {
         child: GestureDetector(
           onTap: () {
             Map<String, String> map = {
-              'titulo': miNoticia.titulo,
-              'descripcion': miNoticia.descripcion,
-              'imagenUrl': miNoticia.imagenUrl
+               'nombreUser':widget.user.nombre,
+            'fotoUser':widget.user.rutaImagen,
+             'id': widget.idNoticia,
+              'titulo': widget.miNoticia.titulo,
+              'descripcion': widget.miNoticia.descripcion,
+              'imagenUrl': widget.miNoticia.imagenUrl
             };
             Navigator.pushNamed(context, '-', arguments: map);
           },
           child: Stack(
             children: [
               Image(
-                image: Image.network(miNoticia.getImagen()).image,
+                image: Image.network(widget.miNoticia.getImagen()).image,
               ),
               Container(
                 margin: const EdgeInsets.only(top: 150),
@@ -136,7 +158,7 @@ class crearNoticia2 extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(
                         vertical: 15, horizontal: 20),
                     child: Text(
-                      miNoticia.getTitulo(),
+                      widget.miNoticia.getTitulo(),
                       style: const TextStyle(fontSize: 19),
                     ),
                   ),
@@ -149,26 +171,29 @@ class crearNoticia2 extends StatelessWidget {
                 child: Container(
                   margin: const EdgeInsets.all(5),
                   child: Text(
-                    miNoticia.getDescripcion(),
+                    widget.miNoticia.getDescripcion(),
                     textAlign: TextAlign.left,
                     style: TextStyle(color: Colors.grey.shade800, fontSize: 11),
                   ),
                 ),
               ),
-          
-              Container( margin: const EdgeInsets.only(
-                   left:  278, ),
+              Container(
+                margin: const EdgeInsets.only(
+                  left: 278,
+                ),
                 child: Row(children: [
-                  GestureDetector(onTap: (){
-                  },
-                    child: Container(margin: const EdgeInsets.all(12), decoration:const BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.only(
-      topLeft:Radius.circular(10),
-      topRight: Radius.circular(10),
-      bottomRight: Radius.circular(10),
-      bottomLeft: Radius.circular(10),
-    )),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      margin: const EdgeInsets.all(12),
+                      decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                          )),
                       child: const Icon(
                         Icons.update,
                         size: 40,
@@ -178,21 +203,34 @@ class crearNoticia2 extends StatelessWidget {
                       height: 40,
                     ),
                   ),
-                  Container(decoration:const BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.only(
-      topLeft:Radius.circular(10),
-      topRight: Radius.circular(10),
-      bottomRight: Radius.circular(10),
-      bottomLeft: Radius.circular(10),
-    )), 
-                    child: const Icon(
-                      Icons.delete_outline,
-                      size: 40,
-                      color: Colors.blue,
+                  GestureDetector(
+                    onTap: () {
+                     publicacionProvider.borrarPublicacion(widget.id);
+                    
+                     setState(() {
+                  
+                });
+                     
+                        
+                      
+                    },
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                          )),
+                      child: const Icon(
+                        Icons.delete_outline,
+                        size: 40,
+                        color: Colors.blue,
+                      ),
+                      width: 40,
+                      height: 40,
                     ),
-                    width: 40,
-                    height: 40,
                   )
                 ]),
               )

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:appclei/presentation/colors_clei.dart';
 import 'package:appclei/presentation/icons_clei_icons.dart';
 import 'package:appclei/src/models/publicacionModel.dart';
 import 'package:appclei/src/providers/publicacion_provider.dart';
@@ -33,6 +34,7 @@ class _CrearPageState extends State<CrearPage> {
   final List _img = [];
 
   final List _imag = [];
+  int cont=0;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +69,10 @@ class _CrearPageState extends State<CrearPage> {
                 //AGREGAR IMAGENES
                 Container(
                   margin: const EdgeInsets.only(right: 25, left: 25),
-                  child: const Text('Imagenes de portada',style: TextStyle(fontSize: 20),),
+                  child: const Text(
+                    'Imagenes de portada',
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
                 Container(
                   margin: const EdgeInsets.only(left: 25, top: 20),
@@ -116,7 +121,10 @@ class _CrearPageState extends State<CrearPage> {
 
                 Container(
                   margin: const EdgeInsets.only(right: 25, left: 25),
-                  child: const Text('Tipo de publicación',style: TextStyle(fontSize: 20),),
+                  child: const Text(
+                    'Tipo de publicación',
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
                 Align(
                   alignment: Alignment.topCenter,
@@ -136,35 +144,42 @@ class _CrearPageState extends State<CrearPage> {
       ),
     );
   }
-  void _mostrarAlert(BuildContext context){
 
-showDialog(context: context,barrierDismissible: true, builder: (context){
-
-  return AlertDialog(
-    shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20.0)),
-    title: const Text('Mensaje'),
-    content: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: const [
-        Text('La noticia se ha publicado'),
-        SizedBox(height: 150,width:150,child: Image(image:AssetImage('assets/IconoClei.png'),) ,),
-       
-      ],
-    ),
-    actions: [
-      Center(child:  TextButton(onPressed: (){Navigator.of(context).pop();Navigator.of(context).pop();}, child: const Text('Aceptar')),)
-     
-     
-
-    ],
-
-
-  );
-
-});
-
+  void _mostrarAlert(BuildContext context) {
+    showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            title: const Text('Mensaje'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                Text('La noticia se ha publicado'),
+                SizedBox(
+                  height: 150,
+                  width: 150,
+                  child: Image(
+                    image: AssetImage('assets/IconoClei.png'),
+                  ),
+                ),
+              ],
+            ),
+            actions: [
+              Center(
+                child: TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Aceptar')),
+              )
+            ],
+          );
+        });
   }
-  
 
   Container _crearDescripcion() {
     return Container(
@@ -197,25 +212,24 @@ showDialog(context: context,barrierDismissible: true, builder: (context){
   }
 
   Widget _crearTitulo() {
-    return  Container(margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       child: TextField(
-        
-          // autofocus: true, //interesante por que abre el teclado automaticamente
-          textCapitalization: TextCapitalization.sentences,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-            counter: Text('Letras ${_titulo.length}'),
-            hintText: 'Escriba un titulo',
-            labelText: 'Titulo',
-            suffixIcon: const Icon(Icons.title),
-          ),
-          onChanged: (valor) {
-             publicacion.titulo =valor;
-            setState(() {
-              _titulo = valor;
-            });
-          },
-        
+        // autofocus: true, //interesante por que abre el teclado automaticamente
+        textCapitalization: TextCapitalization.sentences,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+          counter: Text('Letras ${_titulo.length}'),
+          hintText: 'Escriba un titulo',
+          labelText: 'Titulo',
+          suffixIcon: const Icon(Icons.title),
+        ),
+        onChanged: (valor) {
+          publicacion.titulo = valor;
+          setState(() {
+            _titulo = valor;
+          });
+        },
       ),
     );
   }
@@ -282,19 +296,61 @@ showDialog(context: context,barrierDismissible: true, builder: (context){
       _imag.add(imageTemporary);
 
       if (this.image != null) {
-        Image a = Image.file(
-          this.image!,
-          width: 160,
-          height: 160,
-        );
-        _img.add(a);
-        _img.add(Container(
-              width: 40,
-            ));
+        int id=cont;
+        Container a = Container(
+            child: Stack(
+          children: [
+            Container(
+             decoration:BoxDecoration(border: Border.all(width:4 ,color: ColorsCLei.grisClaro),),
+              
+              child: Image.file(
+                this.image!,
+                width: 160,
+                height: 160,
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+             
+
+                _img[id]=Container();
+                
+               
+                setState(() {
+                  
+                });
+                
+              },
+              child: Container( margin: const EdgeInsets.only(right:12,bottom: 12 ),
+                decoration: const BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
+                      bottomRight: Radius.circular(30),
+                      bottomLeft: Radius.circular(30),
+                    )),
+                child: const Icon(
+                  IconsClei.equis,
+                  size: 20,
+                  color: Colors.white,
+                ),
+                width: 38,
+                height: 38,
+              ),
+            )
+          ],
+        ));
+       
+        _img.insert(cont,a);
+        cont++;
+       
       }
     } on PlatformException catch (e) {
       // ignore: avoid_print
       print('Failed to pick image $e');
     }
   }
+
+
 }

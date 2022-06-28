@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:appclei/src/models/comentarioModel.dart';
+import 'package:appclei/src/models/favoritoModel.dart';
 import 'package:mime_type/mime_type.dart';
 import 'package:http_parser/http_parser.dart';
 
@@ -24,6 +26,7 @@ class PublicacionProvider {
   Future<List<PublicacionModel>> cargarPublicaciones() async {
     final url = '$_url/publicaciones.json';
     final resp = await http.get(Uri.parse(url));
+    // ignore: unused_local_variable
     final decodedData = json.decode(resp.body);
 
     return [];
@@ -53,6 +56,13 @@ class PublicacionProvider {
     return respData['secure_url'];
   }
 
+  Future<int> borrarPublicacion(String id) async {
+    final url = '$_url/publicaciones/$id.json';
+    final resp = await http.delete(Uri.parse(url));
+
+    return 1;
+  }
+
   Future<List<PublicacionModel>> cargarPublicacion() async {
     final url = '$_url/publicaciones.json';
     final resp = await http.get(Uri.parse(url));
@@ -61,6 +71,7 @@ class PublicacionProvider {
 
     final List<PublicacionModel> publicaciones = [];
 
+    // ignore: unnecessary_null_comparison
     if (decodedData == null) return [];
 
     decodedData.forEach((id, prod) {
@@ -72,4 +83,83 @@ class PublicacionProvider {
 
     return publicaciones;
   }
+
+   Future<bool> crearComentario(ComentarioModel comentario,String idNoticia) async {
+    final url = '$_url/comentarios/$idNoticia.json';
+
+    final resp = await http.post(Uri.parse(url),
+        body: comentarioModelToJson(comentario));
+
+    final decodedData = json.decode(resp.body);
+
+    return true;
+  }
+
+
+  Future<List<ComentarioModel>> cargarComentario(String idNoticia) async {
+    final url = '$_url/comentarios/$idNoticia.json';
+    final resp = await http.get(Uri.parse(url));
+    if(json.decode(resp.body)!=null){
+    final Map<String, dynamic> decodedData = json.decode(resp.body);
+
+    final List<ComentarioModel> comentarios = [];
+
+    // ignore: unnecessary_null_comparison
+    if (decodedData == null) return [];
+
+    decodedData.forEach((id, prod) {
+      final prodTemp = ComentarioModel.fromJson(prod);
+      prodTemp.id = id;
+
+      comentarios.add(prodTemp);
+    });
+
+    return comentarios;
+    }
+    return [];
+    
+  }
+Future<bool> crearFavorito(FavoritoModel favorito,String correo) async {
+    final url = '$_url/favoritos/$correo.json';
+
+    final resp = await http.post(Uri.parse(url),
+        body: favoritoModelToJson(favorito));
+
+    final decodedData = json.decode(resp.body);
+
+    return true;
+  }
+   Future<int> eliminarFavorito(String correo, String id) async {
+    final url = '$_url/favoritos/$correo/$id.json';
+    final resp = await http.delete(Uri.parse(url));
+
+    return 1;
+  }
+
+  
+  Future<List<FavoritoModel>> cargarFavoritos(String correo) async {
+    final url = '$_url/favoritos/$correo.json';
+    print(url);
+    final resp = await http.get(Uri.parse(url));
+    if(json.decode(resp.body)!=null){
+    final Map<String, dynamic> decodedData = json.decode(resp.body);
+
+    final List<FavoritoModel> favoritos = [];
+
+    // ignore: unnecessary_null_comparison
+    if (decodedData == null) return [];
+
+    decodedData.forEach((id, prod) {
+      final prodTemp = FavoritoModel.fromJson(prod);
+      prodTemp.id = id;
+
+      favoritos.add(prodTemp);
+    });
+
+    return favoritos;
+    }
+    return [];
+    
+  }
+
 }

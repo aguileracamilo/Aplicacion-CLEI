@@ -8,11 +8,10 @@ import 'package:appclei/src/Page/perfil_page.dart';
 import 'package:flutter/material.dart';
 
 class InicioPage extends StatefulWidget {
-
   Usuario usuario;
 
   InicioPage({Key? key, required this.usuario}) : super(key: key);
-  
+
   @override
   // ignore: no_logic_in_create_state
   State<InicioPage> createState() => _InicioPageState(miUsuario: usuario);
@@ -20,33 +19,35 @@ class InicioPage extends StatefulWidget {
 
 class _InicioPageState extends State<InicioPage> {
   int _selectedIndex = 0;
-  Usuario user=Usuario(nombre: "", correo:"", rutaImagen: "");
-  
+  Usuario user = Usuario(nombre: "", correo: "", rutaImagen: "");
+
   Usuario miUsuario = Usuario(
       nombre: 'default', correo: 'default', rutaImagen: 'assets/default.png');
 
   _InicioPageState({required this.miUsuario});
-  
 
   TextStyle estiloTexto =
       const TextStyle(fontFamily: 'ModernSans', fontSize: 17.0, height: 1.5);
 
-   List<Widget> _widgetOptions() =>  [
-    NoticePage(),
-    FavoritosPage(),
-    const Text(
-      'Index 2: Buscar',
-    ),
-    InfoPage(),
-    PerfilPage(usuario: miUsuario,),
-  ];
+  List<Widget> _widgetOptions() => [
+        NoticePage(usuario: miUsuario),
+        FavoritosPage(
+          usuario: miUsuario,
+        ),
+        const Text(
+          'Index 2: Buscar',
+        ),
+        const InfoPage(),
+        PerfilPage(
+          usuario: miUsuario,
+        ),
+      ];
 
-  visualizar() {
-  }
+  visualizar() {}
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> widgetOptions=_widgetOptions();
+    final List<Widget> widgetOptions = _widgetOptions();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -113,7 +114,8 @@ class _InicioPageState extends State<InicioPage> {
       _selectedIndex = index;
     });
   }
-  Usuario getUsuario(){
+
+  Usuario getUsuario() {
     return miUsuario;
   }
 }

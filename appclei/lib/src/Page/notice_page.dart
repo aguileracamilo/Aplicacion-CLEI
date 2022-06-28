@@ -1,15 +1,27 @@
 import 'package:appclei/presentation/colors_clei.dart';
 import 'package:appclei/presentation/icons_clei_icons.dart';
+import 'package:appclei/src/Entidades/Usuario.dart';
 import 'package:appclei/src/Page/noticia.dart';
 import 'package:appclei/src/models/publicacionModel.dart';
 import 'package:appclei/src/providers/publicacion_provider.dart';
 import 'package:flutter/material.dart';
 
-class NoticePage extends StatelessWidget {
+class NoticePage extends StatefulWidget {
 
+  Usuario usuario=Usuario(nombre: "", correo: "", rutaImagen: "");
+
+ NoticePage({required this.usuario});
+
+  @override
+  State<NoticePage> createState() => _NoticePageState();
+}
+
+class _NoticePageState extends State<NoticePage> {
   Noticia miNoticia = Noticia.i("", "",
       "https://avalos.sv/wp-content/uploads/default-featured-image.png");
+
   final publicacionProvider = PublicacionProvider();
+
   @override
   Widget build(BuildContext context) {
     // ignore: todo
@@ -144,7 +156,7 @@ class NoticePage extends StatelessWidget {
               itemBuilder: (context, num) {
                 Noticia miNoti = Noticia.i(publicacion[num].titulo,
                     publicacion[num].descripcion, publicacion[num].fotoUrl.split("+imag+")[0]);
-                return crearNoticia(miNoti,tipo==publicacion[num].tipo,publicacion[num].fotoUrl);
+                return crearNoticia(miNoti,tipo==publicacion[num].tipo,publicacion[num].fotoUrl,widget.usuario,publicacion[num].id);
               },
             ); /*ListView.builder(
               itemCount: publicacion!.length,
@@ -161,7 +173,6 @@ class NoticePage extends StatelessWidget {
           }
         });
   }
-
 
   AppBar appBarNoticias() {
     return AppBar(
@@ -190,9 +201,15 @@ class NoticePage extends StatelessWidget {
 class crearNoticia extends StatelessWidget {
   Noticia miNoticia = Noticia.i("", "", "");
   bool tipo=false;
+  String idNoticia="";
+  Usuario user=new Usuario(nombre: "", correo: "", rutaImagen: "");
+  
 
-  crearNoticia(this.miNoticia, bool t,fotos, {Key? key}) : super(key: key) {
+  crearNoticia(this.miNoticia, bool t,fotos,Usuario user,String id , {Key? key}) : super(key: key) {
     tipo=t;
+    this.idNoticia=id;
+    this.user=user;
+    
 
   }
 
@@ -205,7 +222,12 @@ class crearNoticia extends StatelessWidget {
           color: Colors.white, border: Border.all(color: Colors.grey)),
       child: GestureDetector(
         onTap: () {
+          print(user.correo);
           Map<String,String> map = {
+            'correo':user.correo,
+            'nombreUser':user.nombre,
+            'fotoUser':user.rutaImagen,
+             'id': idNoticia,
             'titulo': miNoticia.titulo,
             'descripcion': miNoticia.descripcion,
             'imagenUrl': miNoticia.imagenUrl
@@ -231,7 +253,7 @@ class crearNoticia extends StatelessWidget {
                 child: Container(
                   margin: const EdgeInsets.all(5),
                   child: Text( miNoticia.getDescripcion(),
-                    textAlign: TextAlign.left,
+                    textAlign:  TextAlign.justify,
                     style: TextStyle(color: Colors.grey.shade800, fontSize: 11),
                   ),
                 ),

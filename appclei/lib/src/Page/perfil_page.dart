@@ -2,6 +2,7 @@ import 'package:appclei/Login/login_controller.dart';
 import 'package:appclei/presentation/colors_clei.dart';
 
 import 'package:appclei/src/Entidades/Usuario.dart';
+import 'package:appclei/src/Page/publicaciones_studio.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,14 +26,14 @@ class _PerfilPageState extends State<PerfilPage> {
   Widget build(BuildContext context) {
     esAdmin(widget.usuario.correo);
     return Scaffold(
-      appBar: appBarPerfil(isAdmin,context),
+      appBar: appBarPerfil(isAdmin, context),
       body: Center(
         child: buildProfileView(),
       ),
     );
   }
 
-  AppBar appBarPerfil(bool isAdmin,BuildContext context ) {
+  AppBar appBarPerfil(bool isAdmin, BuildContext context) {
     return AppBar(
         title: const Text(
           'Perfil',
@@ -54,7 +55,11 @@ class _PerfilPageState extends State<PerfilPage> {
                   color: ColorsCLei.azulOscuro,
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, 'm');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              StudioPage(usuario: widget.usuario)));
                 },
               ))
         ]);
@@ -83,7 +88,7 @@ class _PerfilPageState extends State<PerfilPage> {
           height: 25,
         ),
         Text(
-          "Correo: "+widget.usuario.getCorreo,
+          "Correo: " + widget.usuario.getCorreo,
           style: const TextStyle(
               color: ColorsCLei.negro, fontFamily: 'ModernSans', fontSize: 18),
         ),
@@ -91,7 +96,9 @@ class _PerfilPageState extends State<PerfilPage> {
           height: 100,
         ),
         ElevatedButton.icon(
-          style: ButtonStyle(backgroundColor: MaterialStateProperty.all(ColorsCLei.azulOscuro) ,fixedSize:MaterialStateProperty.all(const Size(230, 50)) ),
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(ColorsCLei.azulOscuro),
+              fixedSize: MaterialStateProperty.all(const Size(230, 50))),
           onPressed: () {
             controller.logout();
           },
@@ -106,11 +113,12 @@ class _PerfilPageState extends State<PerfilPage> {
     );
   }
 
-  void esAdmin(String correo){
-    if(correo == 'appeventosuniquindio@gmail.com' || correo == 'csancheza@uqvirtual.edu.co'){
-      isAdmin=true;
-    }else{
-      isAdmin=false;
+  void esAdmin(String correo) {
+    if (correo == 'appeventosuniquindio@gmail.com' ||
+        correo == 'csancheza@uqvirtual.edu.co') {
+      isAdmin = true;
+    } else {
+      isAdmin = false;
     }
   }
 }

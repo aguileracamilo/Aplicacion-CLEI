@@ -22,7 +22,7 @@ class InfoPage extends StatelessWidget{
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 40),
             child: const Text("La conferencia latinoamericana de Informática (CLEI) es un evento annual organizado por el centro latinoamericano de Estudios de Informática, y ocurre desde 1974, de modo itinerante por países Latinoamericanos.CLEI es el espacio latinoamericano más importante de intercambio de ideas, experiencias y resultados de investigación entre investigadores, profesionales, docentes, estudiantes de Ciencias de la Computación e Informática, así como sus aplicaciones tecnológicas, por medio de conferencias, talleres, tutoriales, paneles. \nUbicación: Hotel campestre Las Camelias, Armenia, Colombia.\nFecha: 17 al 21 de octubre 2022.",
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 20),textAlign: TextAlign.justify,
             ),
           ),
           Align(
